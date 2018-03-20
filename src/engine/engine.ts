@@ -144,7 +144,7 @@ export const getWinningStateForElm = (grid: Grid) => (element: GridElm): boolean
  * @param grid The grid that will be parsed to find winning element
  * @returns Winning player color
  */
-export const getWinning = (grid: Grid): Winner => {
+export const getWinner = (grid: Grid): Winner => {
   let winner: Winner = null;
 
   for (let i = 0; i < grid.length; i++) {

@@ -1,6 +1,6 @@
 import {
   Grid,
-  getWinning,
+  getWinner,
   Winner,
   getElementPosition,
   GridElm,
@@ -10,7 +10,7 @@ import {
 } from './engine';
 
 describe('Engine', () => {
-  describe('getWinning', () => {
+  describe('getWinner', () => {
     it('should return null if no winner', () => {
       const grid: Grid = [
         [
@@ -39,7 +39,7 @@ describe('Engine', () => {
         ],
       ];
 
-      const result: Winner = getWinning(grid);
+      const result: Winner = getWinner(grid);
       const expectedResult: Winner = null;
 
       expect(result).toBe(expectedResult);
@@ -73,7 +73,7 @@ describe('Engine', () => {
         ],
       ];
 
-      const result: Winner = getWinning(grid);
+      const result: Winner = getWinner(grid);
       const expectedResult: Winner = 'yellow';
 
       expect(result).toBe(expectedResult);

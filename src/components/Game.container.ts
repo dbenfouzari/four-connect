@@ -1,5 +1,5 @@
 import { compose, withState, withHandlers, withProps } from 'recompose';
-import { Grid, Player, getWinning, Winner } from '../engine/engine';
+import { Grid, Player, getWinner, Winner } from '../engine/engine';
 import Game from './Game';
 
 const initialGrid: Grid = [
@@ -121,6 +121,6 @@ export default compose<GameProps & ParentProps, ParentProps>(
   withState('nextPlayer', 'setNextPlayer', 'red'),
   withHandlers({ onClick }),
   withProps(({ grid }) => ({
-    winner: getWinning(grid)
+    winner: getWinner(grid)
   }))
 )(Game);
