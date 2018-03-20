@@ -139,6 +139,19 @@ export const getWinningStateForElm = (grid: Grid) => (element: GridElm): boolean
   return false;
 };
 
+export const findFreeCell = (grid: Grid) => (y: Pos['y']) => {
+  let x = null;
+
+  for (let i = 0; i < grid.length; i++) {
+    if (grid[grid.length - i - 1][y].owner === null) {
+      x = grid.length - i - 1;
+      break;
+    }
+  }
+
+  return x;
+};
+
 /**
  *
  * @param grid The grid that will be parsed to find winning element
@@ -147,11 +160,11 @@ export const getWinningStateForElm = (grid: Grid) => (element: GridElm): boolean
 export const getWinner = (grid: Grid): Winner => {
   let winner: Winner = null;
 
-  for (let i = 0; i < grid.length; i++) {
-    for (let j = 0; j < grid[i].length; j++) {
-      const gridElm: GridElm = grid[i][j];
+  for (let x = 0; x < grid.length; x++) {
+    for (let y = 0; y < grid[x].length; y++) {
+      const gridElm: GridElm = grid[x][y];
 
-      if (gridElm && getWinningStateForElm(grid)(gridElm) === true) {
+      if (gridElm.owner && getWinningStateForElm(grid)(gridElm) === true) {
         winner = gridElm.owner;
         break;
       }

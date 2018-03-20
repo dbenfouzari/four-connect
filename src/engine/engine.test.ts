@@ -48,33 +48,147 @@ describe('Engine', () => {
     it('should return `yellow` if it wins', () => {
       const grid: Grid = [
         [
-          { owner: null }, { owner: null }, { owner: null }, { owner: null },
-          { owner: null }, { owner: null }, { owner: null }
+          {
+            owner: null
+          },
+          {
+            owner: null
+          },
+          {
+            owner: null
+          },
+          {
+            owner: null
+          },
+          {
+            owner: null
+          },
+          {
+            owner: null
+          },
+          {
+            owner: null
+          }
         ],
         [
-          { owner: null }, { owner: null }, { owner: null }, { owner: null },
-          { owner: null }, { owner: null }, { owner: null }
+          {
+            owner: null
+          },
+          {
+            owner: null
+          },
+          {
+            owner: null
+          },
+          {
+            owner: null
+          },
+          {
+            owner: null
+          },
+          {
+            owner: null
+          },
+          {
+            owner: null
+          }
         ],
         [
-          { owner: null }, { owner: null }, { owner: 'yellow' }, { owner: null },
-          { owner: null }, { owner: null }, { owner: null }
+          {
+            owner: null
+          },
+          {
+            owner: null
+          },
+          {
+            owner: null
+          },
+          {
+            owner: 'red'
+          },
+          {
+            owner: null
+          },
+          {
+            owner: null
+          },
+          {
+            owner: null
+          }
         ],
         [
-          { owner: null }, { owner: null }, { owner: 'yellow' }, { owner: null },
-          { owner: null }, { owner: null }, { owner: null }
+          {
+            owner: null
+          },
+          {
+            owner: null
+          },
+          {
+            owner: null
+          },
+          {
+            owner: 'red'
+          },
+          {
+            owner: null
+          },
+          {
+            owner: null
+          },
+          {
+            owner: null
+          }
         ],
         [
-          { owner: null }, { owner: null }, { owner: 'yellow' }, { owner: null },
-          { owner: null }, { owner: null }, { owner: null }
+          {
+            owner: null
+          },
+          {
+            owner: null
+          },
+          {
+            owner: null
+          },
+          {
+            owner: 'red'
+          },
+          {
+            owner: 'yellow'
+          },
+          {
+            owner: null
+          },
+          {
+            owner: null
+          }
         ],
         [
-          { owner: null }, { owner: null }, { owner: 'yellow' }, { owner: null },
-          { owner: null }, { owner: null }, { owner: null }
-        ],
+          {
+            owner: null
+          },
+          {
+            owner: null
+          },
+          {
+            owner: 'yellow'
+          },
+          {
+            owner: 'red'
+          },
+          {
+            owner: 'yellow'
+          },
+          {
+            owner: 'red'
+          },
+          {
+            owner: 'yellow'
+          }
+        ]
       ];
 
       const result: Winner = getWinner(grid);
-      const expectedResult: Winner = 'yellow';
+      const expectedResult: Winner = 'red';
 
       expect(result).toBe(expectedResult);
     });

@@ -10,7 +10,7 @@ interface InnerProps {
 
 interface ParentProps {
   grid: Grid;
-  onClick: (x: number, y: number) => () => void;
+  onClick: (y: number) => () => void;
   winner: Winner;
 }
 
@@ -24,7 +24,7 @@ const Game = ({ className, grid, onClick, winner }: InnerProps & ParentProps) =>
           <Col
             key={`${rowIndex} - ${colIndex}`}
             element={col}
-            onClick={winner ? () => null : onClick(rowIndex, colIndex)}
+            onClick={winner ? () => null : onClick(colIndex)}
           />
         )) }
       </Row>
