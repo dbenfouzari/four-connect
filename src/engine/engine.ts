@@ -50,19 +50,6 @@ export const getSiblings = (grid: Grid, pos: Pos): GridElm[] => {
 /**
  *
  * @param grid The grid that will be parsed
- * @param position The grid item to search for siblings
- */
-export const getColorSiblings = (grid: Grid, pos: Pos): Pos[] => {
-  const siblings = getSiblings(grid, pos);
-  const elementColor = getGridElement(grid)(pos).owner;
-  const friendSiblings = siblings.filter(item => item.owner === elementColor);
-
-  return friendSiblings.map(el => getElementPosition(grid, el));
-};
-
-/**
- *
- * @param grid The grid that will be parsed
  * @param element The element the position will be searched for
  * @returns Element position
  */
@@ -80,6 +67,19 @@ export const getElementPosition = (grid: Grid, element: GridElm): Pos => {
   });
 
   return elmPos;
+};
+
+/**
+ *
+ * @param grid The grid that will be parsed
+ * @param position The grid item to search for siblings
+ */
+export const getColorSiblings = (grid: Grid, pos: Pos): Pos[] => {
+  const siblings = getSiblings(grid, pos);
+  const elementColor = getGridElement(grid)(pos).owner;
+  const friendSiblings = siblings.filter(item => item.owner === elementColor);
+
+  return friendSiblings.map(el => getElementPosition(grid, el));
 };
 
 /**
@@ -147,19 +147,20 @@ export const getWinningStateForElm = (grid: Grid) => (element: GridElm): boolean
 export const getWinning = (grid: Grid): Winner => {
   let winner: Winner = null;
 
-  grid.forEach(row => {
-    winner = row
-      .map((item: GridElm) => {
-        if (item.owner && getWinningStateForElm(grid)(item) === true) {
-          return item.owner;
-        } else {
-          return null;
-        }
-      })
-      .find(i => !!i) || null;
+  for (let i = 0; i < grid.length; i++) {
+    for (let j = 0; j < grid[i].length; j++) {
+      const gridElm: GridElm = grid[i][j];
 
-    if (winner) { return; }
-  });
+      if (gridElm && getWinningStateForElm(grid)(gridElm) === true) {
+        winner = gridElm.owner;
+        break;
+      }
+    }
+
+    if (winner) {
+      break;
+    }
+  }
 
   return winner;
 };

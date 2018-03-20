@@ -1,31 +1,36 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import { Winner } from '../engine/engine';
 
 interface InnerProps {
   className?: string;
 }
 
 interface ParentProps {
-  children?: JSX.Element | JSX.Element[] | string;
+  color: Winner;
 }
 
-const Hole = ({ className, children }: InnerProps & ParentProps) => (
-  <div className={className}>
-    {children}
-  </div>
+const Hole = ({ className }: InnerProps & ParentProps) => (
+  <div className={className} />
 );
 
-const StyledHole = styled<InnerProps>(Hole)`
+const getBackgroundColor = (color: Winner): string => {
+  switch (color) {
+    case 'yellow':
+      return '#ff9';
+    case 'red':
+      return '#900';
+    default:
+      return '#fff';
+  }
+};
+
+const StyledHole = styled<ParentProps>(Hole)`
   display: flex;
   flex-direction: column;
   border-radius: 50%;
   flex: 1;
-
-  &:empty {
-    background: #fff;
-  }
-
-  background: #04f;
+  background: ${props => getBackgroundColor(props.color)};
 `;
 
 export default (props: ParentProps) => <StyledHole {...props} />;

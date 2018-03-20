@@ -2,35 +2,30 @@ import * as React from 'react';
 import styled from 'styled-components';
 import Row from './Row';
 import Col from './Col';
+import { Grid } from '../engine/engine';
 
 interface InnerProps {
   className?: string;
 }
 
-interface ParentProps {}
+interface ParentProps {
+  grid: Grid;
+  onClick: (x: number, y: number) => () => void;
+}
 
-const GRID = [
-  [null, null, null, null, null, null, null],
-  [null, null, null, null, null, null, null],
-  [null, null, null, null, null, null, null],
-  [null, null, null, null, null, null, null],
-  [null, null, null, null, null, null, null],
-  [null, null, null, null, null, null, null],
-];
-
-const Game = ({ className }: InnerProps) => (
+const Game = ({ className, grid, onClick }: InnerProps & ParentProps) => (
   <div className={className}>
-    {GRID.map((row, rowIndex) => (
+    {grid.map((row, rowIndex) => (
       <Row key={rowIndex}>
         { row.map((col, colIndex) => (
-          <Col key={colIndex} />
+          <Col key={`${rowIndex} - ${colIndex}`} element={col} onClick={onClick(rowIndex, colIndex)} />
         )) }
       </Row>
     ))}
   </div>
 );
 
-const StyledGame = styled<InnerProps>(Game)`
+const StyledGame = styled<ParentProps>(Game)`
   max-width: 700px;
   min-width: 700px;
   max-height: 600px;

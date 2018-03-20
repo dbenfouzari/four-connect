@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import Hole from './Hole';
+import { GridElm } from '../engine/engine';
 
 interface InnerProps {
   className?: string;
@@ -8,15 +9,18 @@ interface InnerProps {
 
 interface ParentProps {
   children?: JSX.Element | JSX.Element[] | string;
+  element: GridElm;
+  onClick: () => void;
 }
 
-const Col = ({ className, children }: InnerProps & ParentProps) => (
-  <div className={className}>
-    <Hole>
-      {children}
-    </Hole>
-  </div>
-);
+const Col = ({ className, element, onClick }: InnerProps & ParentProps) => {
+  // tslint:disable-next-line:no-console
+  return (
+    <div className={className} onClick={onClick}>
+      <Hole color={element.owner} />
+    </div>
+  );
+};
 
 const StyledCol = styled<InnerProps>(Col)`
   display: flex;

@@ -1,7 +1,6 @@
 import {
   Grid,
   getWinning,
-  Player,
   Winner,
   getElementPosition,
   GridElm,
@@ -74,8 +73,8 @@ describe('Engine', () => {
         ],
       ];
 
-      const result: Player = getWinning(grid);
-      const expectedResult: Player = 'yellow';
+      const result: Winner = getWinning(grid);
+      const expectedResult: Winner = 'yellow';
 
       expect(result).toBe(expectedResult);
     });
