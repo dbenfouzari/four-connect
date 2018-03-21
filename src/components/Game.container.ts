@@ -84,9 +84,9 @@ const initialGrid: Grid = [
   }, {
     owner: null
   }, {
-    owner: 'red'
+    owner: null
   }, {
-    owner: 'yellow'
+    owner: null
   }],
 ];
 
